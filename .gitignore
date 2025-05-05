@@ -1,0 +1,15 @@
+# Ignore les fichiers temporaires de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Dossiers de build
+bin/
+obj/
+*.log
+
+# Fichiers de dépendances
+packages/
+
+# Fichiers de configuration système
+*.vscode/
