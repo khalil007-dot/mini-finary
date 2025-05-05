@@ -1,15 +1,29 @@
-# Ignore les fichiers temporaires de Visual Studio
-.vs/
-*.user
-*.suo
-
-# Dossiers de build
+# === .NET ===
 bin/
 obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# === ASP.NET secrets / local settings ===
+appsettings.Development.json
+secrets.json
+
+# === Visual Studio ===
+.vs/
+*.dbmdl
+*.dbproj.schemaview
+
+# === Node / Angular ===
+node_modules/
+dist/
+.env
+.angular/
+package-lock.json
+
+# === Logs / OS ===
 *.log
-
-# Fichiers de dépendances
-packages/
-
-# Fichiers de configuration système
-*.vscode/
+*.DS_Store
+Thumbs.db
