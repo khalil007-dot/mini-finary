@@ -1,0 +1,71 @@
+<mat-card>
+  <form (ngSubmit)="addCrypto()">
+    <mat-form-field appearance="fill">
+      <mat-label>Crypto</mat-label>
+      <mat-select [(ngModel)]="newCrypto.name" name="name" required>
+        <mat-option *ngFor="let c of availableCryptos" [value]="c">{{ c }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Plateforme</mat-label>
+      <mat-select [(ngModel)]="newCrypto.platform" name="platform" required>
+        <mat-option *ngFor="let p of availablePlatforms" [value]="p">{{ p }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Montant investi (€)</mat-label>
+      <input matInput type="number" [(ngModel)]="newCrypto.amountInvested" name="amountInvested" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prix d’achat (€)</mat-label>
+      <input matInput type="number" [(ngModel)]="newCrypto.purchasePrice" name="purchasePrice" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Date d’achat</mat-label>
+      <input matInput type="date" [(ngModel)]="newCrypto.purchaseDate" name="purchaseDate" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Ajouter</button>
+
+    <!-- Badge de différence instantanée -->
+    <mat-chip
+      *ngIf="newCrypto.amountInvested && newCrypto.purchasePrice"
+      [color]="purchasePerformance >= 0 ? 'primary' : 'warn'"
+      selected>
+      Différence : {{ purchasePerformance | currency:'EUR' }}
+    </mat-chip>
+  </form>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-form-field appearance="fill">
+  <mat-label>Filtrer</mat-label>
+  <input matInput [(ngModel)]="filterTerm" placeholder="Nom ou plateforme">
+</mat-form-field>
+
+<mat-list>
+  <mat-list-item *ngFor="let c of filteredCryptos">
+    <div class="item-info">
+      <div class="item-main">
+        {{ c.name }} • {{ c.platform }} • {{ c.amountInvested | currency:'EUR' }}
+      </div>
+      <span
+        class="perf-badge"
+        [ngClass]="{ 'positive': c.performance >= 0, 'negative': c.performance < 0 }">
+        {{ c.performance | currency:'EUR' }}
+      </span>
+      <button mat-icon-button (click)="deleteCrypto(c.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-list-item>
+</mat-list>
+<section class="performance-section">
+  <h2>Simulateur de rendement avec 1000$ d'invesstissement initial</h2>
+  <app-performance-chart></app-performance-chart>
+</section>

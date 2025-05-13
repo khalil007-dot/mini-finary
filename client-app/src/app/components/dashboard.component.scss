@@ -1,0 +1,66 @@
+
+
+/* Container principal */
+.dashboard-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* 1) Les 3 cartes résumé */
+.cards-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  flex: 1 1 0;
+  color: white;
+  border-radius: 8px;
+}
+
+/* Couleurs personnalisées pour chaque type */
+.crypto-card {
+  background-color: #7e57c2; 
+}
+.action-card {
+  background-color: #42a5f5; 
+}
+.epargne-card {
+  background-color: #26a69a; 
+}
+
+/* 2) Carte Total global */
+.total-global-card {
+  margin: 2rem 0;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+}
+.global-card {
+  background-color: #ab47bc;
+}
+.total-amount {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* 3) Camembert */
+.chart-container {
+  max-width: 400px;
+  height: 400px;
+  margin: 0 auto 2rem;
+  display: block;
+}
+
+/* Message si pas de données */
+.no-data {
+  text-align: center;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.dashboard-chart {
+  margin-bottom: 2rem;
+}

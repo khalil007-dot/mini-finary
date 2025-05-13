@@ -1,0 +1,72 @@
+
+
+
+<div class="dashboard-container">
+    
+    <h2>Tableau de bord</h2>
+   <!--  Camembert -->
+   <div class="chart-container" *ngIf="pieChartData.datasets[0].data.length > 0">
+    <canvas
+      baseChart
+      [data]="pieChartData"
+      [type]="pieChartType"
+      [options]="pieChartOptions">
+    </canvas>
+  </div>
+  <p *ngIf="pieChartData.datasets[0].data.length === 0" class="no-data">
+    Aucune donnée à afficher.
+  </p>
+</div>
+    <mat-divider></mat-divider>
+    
+    <div class="cards-container">
+      <!-- Crypto -->
+      <mat-card class="summary-card crypto-card">
+        <mat-card-header>
+          <mat-card-title>Crypto</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Total investi : {{ totalCrypto | currency:'EUR':'symbol' }}</p>
+          <p>Positions : {{ countCrypto }}</p>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Actions -->
+      <mat-card class="summary-card action-card">
+        <mat-card-header>
+          <mat-card-title>Actions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Total investi : {{ totalAction | currency:'EUR':'symbol' }}</p>
+          <p>Positions : {{ countAction }}</p>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Épargne -->
+      <mat-card class="summary-card epargne-card">
+        <mat-card-header>
+          <mat-card-title>Épargne</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Total investi : {{ totalEpargne | currency:'EUR':'symbol' }}</p>
+          <p>Positions : {{ countEpargne }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <mat-divider></mat-divider>
+  
+    <!-- 2) Carte Total global -->
+    <mat-card class="total-global-card global-card">
+      <mat-card-header>
+        <mat-card-title>Total global investi</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="total-amount">
+        {{ totalGlobal | currency:'EUR':'symbol' }}
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-divider></mat-divider>
+    <app-performance-chart class="dashboard-chart"></app-performance-chart>
+   
+  

@@ -1,0 +1,15 @@
+
+
+.chart-wrapper {
+    /* ne jamais dépasser 800px, centré dans son parent */
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* Forcer le canvas à s’adapter à la largeur du wrapper */
+  .chart-wrapper canvas {
+    width: 100% !important;   /* important pour override Chart.js inline style */
+    height: auto !important;
+    display: block;           /* pour supprimer un éventuel inline-block gap */
+  }
+  

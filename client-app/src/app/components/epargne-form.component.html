@@ -1,0 +1,86 @@
+<div class="crypto-container">
+    <h2>Mes investissements en épargne</h2>
+  
+    <!-- KPI -->
+    <div>Total investi : {{ totalInvested | number:'1.2-2' }} €</div>
+  
+    <!-- Formulaire -->
+    <form (ngSubmit)="addEpargne()">
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="newEpargne.type" name="type" required>
+          <mat-option value="" disabled>— Sélectionner —</mat-option>
+          <mat-option *ngFor="let t of types" [value]="t">
+            {{ t }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Montant investi (€)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="newEpargne.amountInvested"
+          name="amountInvested"
+          required
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Taux d’intérêt (%)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="newEpargne.interestRate"
+          name="interestRate"
+          required
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Date d’achat</mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="newEpargne.purchaseDate"
+          name="purchaseDate"
+          required
+        />
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">
+        Ajouter
+      </button>
+    </form>
+  
+    <mat-divider></mat-divider>
+  
+    <!-- Filtre -->
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Filtrer</mat-label>
+      <input
+        matInput
+        [(ngModel)]="filterTerm"
+        name="filter"
+        placeholder="Type"
+      />
+    </mat-form-field>
+  
+    <!-- Liste -->
+    <ul class="crypto-list">
+      <li *ngFor="let item of filteredEpargne" class="crypto-item">
+        {{ item.type }} — {{ item.amountInvested | number:'1.2-2' }} €
+        à {{ item.interestRate | number:'1.2-2' }}%
+        le {{ item.purchaseDate }}
+        <button mat-icon-button color="warn" (click)="deleteEpargne(item.id!)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
+    <section class="performance-section">
+      <h2>Simulateur de rendement avec 1000$ d'invesstissement initial</h2>
+      <app-performance-chart></app-performance-chart>
+    </section>
+  </div>
+  
